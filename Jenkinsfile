@@ -32,7 +32,7 @@ node {
             def pactBrockerCli = "/usr/share/jenkins/ref/pact/bin/pact-broker"
             def artifactFile = findFiles glob: 'target/order-service*.jar'
             def versionNo = artifactFile[0].name.minus("order-service-").minus(".jar")
-            sh "${pactBrockerCli} publish target/pacts --consumer-app-version=${versionNo} --broker-base-url=http://broker_app:8000"
+            sh "${pactBrockerCli} publish target/pacts --consumer-app-version=${versionNo} --broker-base-url=http://broker_app"
         }
     }
 
