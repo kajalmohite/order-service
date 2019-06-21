@@ -49,7 +49,7 @@ public class OrderServiceTest {
     }
 
     */
-    
+    /* test */
     @Pact(provider = "user_service", consumer = "order_service")
     public RequestResponsePact createPact(PactDslWithProvider builder) {
         return builder.given("User Paresh exists")
