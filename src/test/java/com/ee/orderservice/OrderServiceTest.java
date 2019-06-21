@@ -40,7 +40,7 @@ public class OrderServiceTest {
 
     /**
      * Setup the user service mock server. Method name can be anything but must be annotated with @pact
-     */
+     
     @Pact(provider = "user_service", consumer = "order_service")
     public RequestResponsePact createPact(PactDslWithProvider builder) {
         // TODO - Implement user service mock expectation required for OrderService.
@@ -48,6 +48,22 @@ public class OrderServiceTest {
         return null;
     }
 
+    */
+    
+    @Pact(provider = "user_service", consumer = "order_service")
+    public RequestResponsePact createPact(PactDslWithProvider builder) {
+        return builder.given("User Paresh exists")
+                .uponReceiving("user GET request")
+                .path("/user/" + USER_ID)
+                .method("GET")
+                .willRespondWith()
+                .status(200)
+                .body(newJsonBody((a) -> {
+                    a.stringValue("name", "paresh");
+                    a.stringValue("email", "paresh@ee.com");
+                    a.stringValue("address", "pune");
+                }).build()).toPact();
+    }
 
     @Test
     @PactVerification("user_service")
